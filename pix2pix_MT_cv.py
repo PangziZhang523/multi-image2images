@@ -22,7 +22,7 @@ import shutil
 import sys
 
 os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
-os.environ["CUDA_VISIBLE_DEVICES"] = "2" # 指定gpu编号，从0开始
+os.environ["CUDA_VISIBLE_DEVICES"] = "0,1,2,3" # 指定gpu编号，从0开始
 tf.reset_default_graph()
 
 parser = argparse.ArgumentParser()
@@ -51,7 +51,7 @@ parser.add_argument("--save_freq", type=int, default=5000, help="save model ever
 parser.add_argument("--separable_conv", action="store_true", help="use separable convolutions in the generator")
 parser.add_argument("--aspect_ratio", type=float, default=1.0, help="aspect ratio of output images (width/height)")
 parser.add_argument("--lab_colorization", action="store_true", help="split input image into brightness (A) and color (B)")
-parser.add_argument("--batch_size", type=int, default=1, help="number of images in batch")
+parser.add_argument("--batch_size", type=int, default=24, help="number of images in batch")
 parser.add_argument("--which_direction", type=str, default="AtoB", choices=["AtoB", "BtoA"])
 parser.add_argument("--ngf", type=int, default=64, help="number of generator filters in first conv layer")
 parser.add_argument("--ndf", type=int, default=64, help="number of discriminator filters in first conv layer")
@@ -63,11 +63,11 @@ parser.add_argument("--lr", type=float, default=0.0002, help="initial learning r
 parser.add_argument('--d_lr', type=float, default=2e-4, help='initial learning rate for adam') #判别器的学习率，对生成器和判别器采用不同的学习率
 parser.add_argument('--g_lr', type=float, default=1e-3, help='initial learning rate for adam') #生成器的学习率
 parser.add_argument("--beta1", type=float, default=0.5, help="momentum term of adam")
-parser.add_argument("--l1_weight", type=float, default=100.0, help="weight on L1 term for generator gradient")
+parser.add_argument("--l1_weight", type=float, default=10.0, help="weight on L1 term for generator gradient")
 parser.add_argument("--gan_weight", type=float, default=1.0, help="weight on GAN term for generator gradient")
 
 # export options
-parser.add_argument("--output_filetype", default="png", choices=["png", "jpeg"])
+parser.add_argument("--output_filetype", default="jpg", choices=["png", "jpeg"])
 
 
 a = parser.parse_args()
