@@ -35,10 +35,7 @@ parser.add_argument("--output_dir_all", help="where to put output files")
 parser.add_argument("--cv_info_dir", default=None, help="directory contains cross validation set ups")
 parser.add_argument("--task_No", default=None, help="number of task, 1 means t1, 2 means t2, 3 means multi")
 parser.add_argument("--desired_l1_loss", default=0.005, help="desired l1 loss for early stop the training < max_epochs ")
-
-
-#parser.add_argument("--checkpoint", help="the dir contains the last trained model. for continuing training.")
-
+parser.add_argument("--checkpoint", default='./model/', help="the dir contains the last trained model. for continuing training.")
 parser.add_argument("--seed", type=int)
 parser.add_argument("--max_steps", type=int, help="number of training steps (0 to disable)")
 parser.add_argument("--max_epochs", type=int, help="number of training epochs")
